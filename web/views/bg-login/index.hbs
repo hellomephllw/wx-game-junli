@@ -7,39 +7,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Welcome</title>
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/linearicons/style.css">
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-    <link rel="stylesheet" href="assets/css/demo.css">
+    <link rel="stylesheet" href="/css/common/main.css">
+    <link rel="stylesheet" href="/css/common/util-common.css">
+    <!-- app -->
+    <link rel="stylesheet" href="/css/bg-login/index.css">
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/bg/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/bg/favicon.png">
 </head>
 <body>
 
-<div id="wrapper">
+<div id="wrapper" class="wrapper">
     <div class="vertical-align-wrap">
         <div class="vertical-align-middle">
             <div class="auth-box ">
                 <div class="left">
                     <div class="content">
                         <div class="header">
-                            <div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>
+                            <div class="logo text-center">
+                                <img class="coolguy-logo" src="/images/bg/project-logo.jpg" alt="Project Logo">
+                            </div>
                             <p class="lead">Login to your account</p>
                         </div>
-                        <form class="form-auth-small" action="index.php">
+                        <div class="form-auth-small">
                             <div class="form-group">
                                 <label for="signin-email" class="control-label sr-only">Email</label>
-                                <input type="email" class="form-control" id="signin-email" value="samuel.gold@domain.com" placeholder="Email">
+                                <input id="account" type="text" class="form-control" id="signin-email" placeholder="Account">
                             </div>
                             <div class="form-group">
                                 <label for="signin-password" class="control-label sr-only">Password</label>
-                                <input type="password" class="form-control" id="signin-password" value="thisisthepassword" placeholder="Password">
+                                <input id="password" type="password" class="form-control" id="signin-password" placeholder="Password">
                             </div>
                             <div class="form-group clearfix">
                                 <label class="fancy-checkbox element-left">
@@ -47,18 +50,18 @@
                                     <span>Remember me</span>
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+                            <button id="loginBtn" type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
                             <div class="bottom">
                                 <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="right">
                     <div class="overlay"></div>
                     <div class="content text">
-                        <h1 class="heading">Free Bootstrap dashboard template</h1>
-                        <p>by The Develovers</p>
+                        <h1 class="heading">Management Platform for CoolGuy!</h1>
+                        <p>develop by Darren Lee</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -67,7 +70,10 @@
     </div>
 </div>
 
-<script></script>
-<script></script>
+<!-- common -->
+<script src="/vendor/jquery/jquery.js"></script>
+<script src="/scripts/common/util-common.js"></script>
+<!-- app -->
+<script src="/scripts/bg-login/index.js"></script>
 </body>
 </html>

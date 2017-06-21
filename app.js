@@ -4,6 +4,7 @@
 var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 
 /**启动服务器*/
 var server = app.listen(3000, function () {
@@ -20,6 +21,11 @@ app.use(express.static('./web/public'));
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 app.set('views', './web/views');
+
+/**解析application/x-www-form-urlencoded*/
+app.use(bodyParser.urlencoded({ extended: false }));
+/**解析application/json*/
+app.use(bodyParser.json());
 
 /**添加路由*/
 //api
