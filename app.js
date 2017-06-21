@@ -33,3 +33,4 @@ app.use('/api', require('./lib/api/admin'));
 
 //视图
 app.use('/', require('./lib/routes/adminRouter'));
+app.use('/', require('./lib/routes/gameRouter'));

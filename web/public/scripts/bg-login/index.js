@@ -39,8 +39,7 @@
                         $('#commonLoading').hide();
                         if (data.success) {
                             showSmallTips('登录成功！');
-                            //todo
-
+                            location.href = '/admin/index.htm';
                         } else {
                             showSmallTips('账号或密码错误！');
                         }
