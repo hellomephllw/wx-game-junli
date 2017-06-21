@@ -3,7 +3,9 @@
  */
 (function() {
     var cache = {
-
+        api: {
+            login: '/api/admin/login'
+        }
     };
 
     var loginPage = {
@@ -28,7 +30,7 @@
                 var password = $('#password').val();
 
                 getJson({
-                    url: '/api/admin/login',
+                    url: cache.api.login,
                     data: {
                         username: account,
                         password: password
