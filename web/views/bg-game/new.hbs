@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/css/bg-game/new.css">
+<div class="new panel">
+    <ol class="breadcrumb">
+        <li><a href="#">Game</a></li>
+        <li class="active">New</li>
+        <!--<li class="active">Data</li>-->
+    </ol>
+    <div class="new-control">
+        <button id="ok" class="btn btn-primary">OK</button>
+    </div>
+    <div class="new-data">
+        <form id="form" action="/">
+            <input class="form-control" type="text" name="name" placeholder="name">
+            <textarea class="form-control" placeholder="description" name="desc" rows="4"></textarea>
+            <input id="upload" style="display: none" type="file" name="background">
+            <button id="uploadProxyBtn" class="btn btn-info">upload background pic</button>
+            <img id="showImage" class="upload-image" src="/images/bg/empty.jpg" alt="">
+        </form>
+    </div>
+</div>
+<script src="/scripts/bg-game/new.js"></script>

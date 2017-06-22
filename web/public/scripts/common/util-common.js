@@ -116,3 +116,32 @@ function getHtml(url, id) {
         }
     });
 }
+
+/**
+ * 使用ajax提交表单
+ * @param type http类型
+ * @param url url
+ * @param formId 表单id
+ * @param callback 成功后的回调
+ */
+function submitForm(type, url, formId, callback) {
+    //加载提示
+    $('#commonLoading').show();
+
+    //发送ajax
+    $.ajax({
+        type: type,
+        url: url,
+        data: new FormData(document.getElementById(formId)),
+        contentType: false,
+        processData: false,
+        success: function() {
+            $('#commonLoading').hide();
+            callback();
+        },
+        error: function() {
+            toastr.error('出错啦！');
+            $('#commonLoading').hide();
+        }
+    });
+}

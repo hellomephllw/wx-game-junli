@@ -27,6 +27,7 @@ insert into admin values(null, 'admin', 'ljl123456', 0, 'super manager');
 drop table if exists Game;
 create table Game(
     id int primary key not null auto_increment,
+    name varchar(30) not null,
     imgPath varchar(100) not null,
     description varchar(50) not null
 );

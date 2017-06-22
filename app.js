@@ -5,6 +5,7 @@ var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
+global.rootPath = __dirname;
 
 /**启动服务器*/
 var server = app.listen(3000, function () {
@@ -30,6 +31,7 @@ app.use(bodyParser.json());
 /**添加路由*/
 //api
 app.use('/api', require('./lib/api/admin'));
+app.use('/api', require('./lib/api/game'));
 
 //视图
 app.use('/', require('./lib/routes/adminRouter'));
