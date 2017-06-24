@@ -4,7 +4,9 @@
 (function() {
     var cache = {
         linkUrl: {
-            goGameNew: '/game/new.htm'
+            goGameNew: '/game/new.htm',
+            goGameDetail: '/game/detail.htm',
+            goGameModify: '/game/modify.htm'
         }
     };
 
@@ -23,6 +25,9 @@
         },
         initEvent: function() {
             this.addClickNewBtnEvent();
+            this.addClickDetailBtnEvent();
+            this.addClickModifyBtnEvent();
+            this.addClickRemoveBtnEvent();
         },
         initComponent: function() {
             paginatorCpn.init({
@@ -36,6 +41,24 @@
         addClickNewBtnEvent: function() {
             $('#new').click(function() {
                 getHtml(cache.linkUrl.goGameNew, 'mainContent');
+            });
+        },
+        addClickDetailBtnEvent: function() {
+            $('#panelBody').on('click', '.panel-operate-detail', function() {
+                var id = $(this).attr('data-id');
+                alert($(this).attr('data-id'));
+            });
+        },
+        addClickModifyBtnEvent: function() {
+            $('#panelBody').on('click', '.panel-operate-modify', function() {
+                var id = $(this).attr('data-id');
+
+            });
+        },
+        addClickRemoveBtnEvent: function() {
+            $('#panelBody').on('click', '.panel-operate-remove', function() {
+                var id = $(this).attr('data-id');
+
             });
         }
     };

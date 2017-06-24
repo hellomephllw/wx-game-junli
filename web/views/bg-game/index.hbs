@@ -9,37 +9,33 @@
         <button id="new" class="btn btn-primary">New</button>
     </div>
     <div class="game-data">
-        <div class="panel-body">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Steve</td>
-                    <td>Jobs</td>
-                    <td>@steve</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Simon</td>
-                    <td>Philips</td>
-                    <td>@simon</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>@jane</td>
-                </tr>
-                </tbody>
-            </table>
+        <div id="panelBody" class="panel-body">
+            {{#if rows.length}}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>name</th>
+                        <th>description</th>
+                        <th>operate area</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {{#each rows}}
+                            <tr>
+                                <td>{{@index}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.description}}</td>
+                                <td>
+                                    <a class="panel-operate-detail" data-id="{{this.id}}" href="javascript:void(0)">Detail</a>
+                                    <a class="panel-operate-modify" data-id="{{this.id}}" href="javascript:void(0)">Modify</a>
+                                    <a class="panel-operate-remove" data-id="{{this.id}}" href="javascript:void(0)">Remove</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
         </div>
     </div>
     <div class="game-pager">
