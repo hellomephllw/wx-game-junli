@@ -4,6 +4,7 @@
 (function() {
     var cache = {
         api: {
+            deleteGame: '/api/game'
         },
         linkUrl: {
             goGame: '/game/index.htm',
@@ -64,8 +65,23 @@
         },
         addClickRemoveBtnEvent: function() {
             $('#panelBody').on('click', '.panel-operate-remove', function() {
+                var bool = confirm('确定要删除？');
                 var id = $(this).attr('data-id');
 
+                if (bool) {
+                    getJson({
+                        type: 'delete',
+                        url: cache.api.deleteGame + '/' + id,
+                        done: function(data) {
+                            if (data.success) {
+                                toastr.success('删除成功！');
+                                getHtml(cache.linkUrl.goGame, 'mainContent');
+                            } else {
+                                toastr.error('删除失败！');
+                            }
+                        }
+                    });
+                }
             });
         }
     };
