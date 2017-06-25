@@ -1,0 +1,23 @@
+.detail {
+    padding-bottom: 10px;
+}
+
+.form-control {
+    margin: 10px 0;
+}
+
+.detail-data {
+    width: 400px;
+    padding: 0 25px;
+    margin-top: 10px;
+}
+
+.detail-control {
+    padding-left: 25px;
+    margin-bottom: 25px;
+}
+
+.detail-image {
+    max-width: 400px;
+    height: auto;
+}

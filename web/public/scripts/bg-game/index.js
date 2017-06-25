@@ -53,7 +53,7 @@
         addClickDetailBtnEvent: function() {
             $('#panelBody').on('click', '.panel-operate-detail', function() {
                 var id = $(this).attr('data-id');
-                alert($(this).attr('data-id'));
+                getHtml(cache.linkUrl.goGameDetail + '?id=' + id, 'mainContent');
             });
         },
         addClickModifyBtnEvent: function() {
