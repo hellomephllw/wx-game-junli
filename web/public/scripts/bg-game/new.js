@@ -16,6 +16,7 @@
             this.initData();
             this.initPage();
             this.initEvent();
+            this.initComponent();
         },
         initData: function() {
         },
@@ -25,6 +26,9 @@
             this.addClickUploadBtnEvent();
             this.addShowUploadImageEvent();
             this.addSubmitBtnEvent();
+        },
+        initComponent: function() {
+            breadcrumbCpn.init();
         },
         addClickUploadBtnEvent: function() {
             $('#uploadProxyBtn').click(function(event) {
@@ -53,6 +57,18 @@
                     toastr.success('add a new game successfully!');
                     getHtml(cache.linkUrl.goGameIndex, 'mainContent');
                 });
+            });
+        }
+    };
+
+    var breadcrumbCpn = {
+        init: function() {
+            this.initEvent();
+        },
+        initEvent: function() {
+            $('#mainContent').on('click', '.breadcrumb', function(event) {
+                var linkUrl = $(event.target).attr('data-link');
+                getHtml(linkUrl, 'mainContent');
             });
         }
     };
