@@ -3,7 +3,10 @@
  */
 (function() {
     var cache = {
+        api: {
+        },
         linkUrl: {
+            goGame: '/game/index.htm',
             goGameNew: '/game/new.htm',
             goGameDetail: '/game/detail.htm',
             goGameModify: '/game/modify.htm'
@@ -31,11 +34,15 @@
         },
         initComponent: function() {
             paginatorCpn.init({
-                currentPage: 3,
-                totalPages: 10,
+                currentPage: $('#currentPage').val(),
+                totalPages: $('#totalPages').val(),
+                numberOfPages: $('#numberOfPages').val(),
                 size:'normal',
                 alignment:'right',
-                wrapperId: 'paging'
+                wrapperId: 'paging',
+                onPageClicked: function(event, originalEvent, type, page) {
+                    getHtml(cache.linkUrl.goGame + '?currentPage=' + page, 'mainContent');
+                }
             });
         },
         addClickNewBtnEvent: function() {

@@ -23,7 +23,7 @@
                     <tbody>
                         {{#each rows}}
                             <tr>
-                                <td>{{@index}}</td>
+                                <td>{{this.id}}</td>
                                 <td>{{this.name}}</td>
                                 <td>{{this.description}}</td>
                                 <td>
@@ -39,6 +39,10 @@
         </div>
     </div>
     <div class="game-pager">
+        <input id="currentPage" type="hidden" value="{{currentPage}}" />
+        <input id="totalPages" type="hidden" value="{{totalPages}}" />
+        <input id="pageSize" type="hidden" value="{{pageSize}}" />
+        <input id="numberOfPages" type="hidden" value="{{numberOfPages}}" />
         <div id="paging"></div>
     </div>
 </div>
