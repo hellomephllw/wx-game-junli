@@ -60,7 +60,7 @@
         addClickModifyBtnEvent: function() {
             $('#panelBody').on('click', '.panel-operate-modify', function() {
                 var id = $(this).attr('data-id');
-
+                getHtml(cache.linkUrl.goGameModify + '?id=' + id, 'mainContent');
             });
         },
         addClickRemoveBtnEvent: function() {

@@ -1,4 +1,24 @@
-<link rel="stylesheet" href="/css/bg-game/detail.css">
+<!--<link rel="stylesheet" href="/css/bg-game/detail.css">-->
+<style>
+    .detail {
+        padding-bottom: 10px;
+    }
+
+    .form-control {
+        margin: 10px 0;
+    }
+
+    .detail-data {
+        width: 400px;
+        padding: 0 25px;
+        margin-top: 10px;
+    }
+
+    .detail-image {
+        max-width: 400px;
+        height: auto;
+    }
+</style>
 <div class="detail panel">
     <ol class="breadcrumb">
         <li><a data-link="/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
@@ -10,4 +30,29 @@
         <img class="detail-image" src="{{imgPath}}" alt="">
     </div>
 </div>
-<script src="/scripts/bg-game/detail.js"></script>
+<script>
+    (function() {
+        var detailPage = {
+            init: function() {
+                this.initComponent();
+            },
+            initComponent: function() {
+                breadcrumbCpn.init();
+            }
+        };
+
+        var breadcrumbCpn = {
+            init: function() {
+                this.initEvent();
+            },
+            initEvent: function() {
+                $('#mainContent').on('click', '.breadcrumb', function(event) {
+                    var linkUrl = $(event.target).attr('data-link');
+                    getHtml(linkUrl, 'mainContent');
+                });
+            }
+        };
+
+        detailPage.init();
+    }());
+</script>
