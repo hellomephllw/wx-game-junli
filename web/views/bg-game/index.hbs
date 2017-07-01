@@ -93,6 +93,7 @@
                 this.addClickDetailBtnEvent();
                 this.addClickModifyBtnEvent();
                 this.addClickRemoveBtnEvent();
+                this.addClickGoGoodyBagBtnEvent();
             },
             initComponent: function() {
                 paginatorCpn.init({
@@ -143,6 +144,12 @@
                             }
                         });
                     }
+                });
+            },
+            addClickGoGoodyBagBtnEvent: function() {
+                $('#panelBody').on('click', '.panel-operate-goodybag', function() {
+                    var id = $(this).attr('data-id');
+                    getHtml(cache.linkUrl.goGoodyBag + '?id=' + id, 'mainContent');
                 });
             }
         };

@@ -1,0 +1,135 @@
+<style>
+    .goodybag {
+        background: #fff;
+    }
+
+    .goodybag-control {
+        padding: 0 0 10px 0;
+        border-bottom: 1px solid #ddd;
+        margin: 10px 25px 0;
+    }
+
+    .goodybag-pager {
+        margin-right: 24px;
+        text-align: right;
+    }
+</style>
+<div class="goodybag panel">
+    <ol class="breadcrumb">
+        <li class="active">GoodyBag</li>
+    </ol>
+    <div class="goodybag-control">
+        <button id="new" class="btn btn-primary">New</button>
+    </div>
+    <div class="goodybag-data">
+        <div id="panelBody" class="panel-body">
+            {{#if rows.length}}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>name</th>
+                        <th>description</th>
+                        <th>operate area</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each rows}}
+                        <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.description}}</td>
+                            <td>
+                                <a class="panel-operate-detail" data-id="{{this.id}}" href="javascript:void(0)">Detail</a>
+                                <a class="panel-operate-modify" data-id="{{this.id}}" href="javascript:void(0)">Modify</a>
+                                <a class="panel-operate-remove" data-id="{{this.id}}" href="javascript:void(0)">Remove</a>
+                                <a class="panel-operate-goodybag" data-id="{{this.id}}" href="javascript:void(0)">GoodyBag</a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+        </div>
+    </div>
+    <div class="goodybag-pager">
+        <input id="currentPage" type="hidden" value="{{currentPage}}" />
+        <input id="totalPages" type="hidden" value="{{totalPages}}" />
+        <input id="pageSize" type="hidden" value="{{pageSize}}" />
+        <input id="numberOfPages" type="hidden" value="{{numberOfPages}}" />
+        <div id="paging"></div>
+    </div>
+</div>
+<script>
+    (function() {
+        var cache = {
+            api: {
+                deleteGoodyBag: '/api/goodybag'
+            },
+            linkUrl: {
+                goGame: '/game/index.htm',
+                goGameNew: '/game/new.htm',
+                goGameDetail: '/game/detail.htm',
+                goGameModify: '/game/modify.htm',
+                goGoodyBag: '/goodybag/index.htm'
+            }
+        };
+
+        var goodyBagPage = {
+            init: function() {
+                this.initData();
+                this.initPage();
+                this.initEvent();
+                this.initComponent();
+            },
+            initData: function() {
+
+            },
+            initPage: function() {
+
+            },
+            initEvent: function() {
+
+            },
+            initComponent: function() {
+                paginatorCpn.init({
+                    currentPage: $('#currentPage').val(),
+                    totalPages: $('#totalPages').val(),
+                    numberOfPages: $('#numberOfPages').val(),
+                    size:'normal',
+                    alignment:'right',
+                    wrapperId: 'paging',
+                    onPageClicked: function(event, originalEvent, type, page) {
+                        getHtml(cache.linkUrl.goGame + '?currentPage=' + page, 'mainContent');
+                    }
+                });
+            }
+        };
+
+        var paginatorCpn = {
+            cache: null,
+            init: function(option) {
+                this.initData(option);
+                this.initPage();
+                this.initEvent();
+            },
+            initData: function(option) {
+                this.storeCache(option);
+            },
+            initPage: function() {
+                this.renderPaginator();
+            },
+            initEvent: function() {
+
+            },
+            storeCache: function(option) {
+                this.cache = option;
+            },
+            renderPaginator: function() {
+                $('#' + this.cache.wrapperId).bootstrapPaginator(this.cache);
+            }
+        };
+
+        goodyBagPage.init();
+    }());
+</script>

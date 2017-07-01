@@ -32,7 +32,9 @@ app.use(bodyParser.json());
 //api
 app.use('/api', require('./lib/api/admin'));
 app.use('/api', require('./lib/api/game'));
+app.use('/api', require('./lib/api/goodyBag'));
 
 //视图
 app.use('/', require('./lib/routes/adminRouter'));
 app.use('/', require('./lib/routes/gameRouter'));
+app.use('/', require('./lib/routes/goodyBagRouter'));
