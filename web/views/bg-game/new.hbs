@@ -97,7 +97,6 @@
             addSubmitBtnEvent: function() {
                 $('#ok').click(function() {
                     submitForm('post', cache.api.addNewGame, 'form', function() {
-                        toastr.success('add a new game successfully!');
                         getHtml(cache.linkUrl.goGameIndex, 'mainContent');
                     });
                 });

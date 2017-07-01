@@ -36,8 +36,9 @@
     </div>
     <div class="modify-data">
         <form id="form" action="/">
-            <input class="form-control" type="text" name="name" placeholder="name" value="{{name}}">
-            <textarea class="form-control" placeholder="description" name="desc" rows="4">{{description}}</textarea>
+            <input id="id" name="id" type="hidden" value="{{id}}">
+            <input id="name" class="form-control" type="text" name="name" placeholder="name" value="{{name}}">
+            <textarea id="description" class="form-control" placeholder="description" name="desc" rows="4">{{description}}</textarea>
             <input id="upload" style="display: none" type="file" name="background">
             <button id="uploadProxyBtn" class="btn btn-info">upload background pic</button>
             <img id="showImage" class="upload-image" src="{{imgPath}}" alt="">
@@ -46,6 +47,15 @@
 </div>
 <script>
     (function() {
+        var cache = {
+            api: {
+                modifyGame: '/api/game'
+            },
+            linkUrl: {
+                goGameIndex: '/game/index.htm'
+            }
+        };
+
         var modifyPage = {
             init: function() {
                 this.initData();
@@ -88,21 +98,17 @@
                         $('#showImage').css('width', 400).attr('src', imgBase64Data);
                     }
                 });
-            }
+            },
             addClickOkBtnEvent: function() {
                 $('#ok').click(function() {
-                    getJson({
-                        type: 'patch',
-                        url: '/game',
-                        done: function(data) {
-
-                        }
+                    submitForm('patch', cache.api.modifyGame, 'form', function() {
+                        getHtml(cache.linkUrl.goGameIndex, 'mainContent');
                     });
                 });
             },
             addClickCancelBtnEvent: function() {
                 $('#cancel').click(function() {
-                    getHtml('/game/index.htm', 'mainContent');
+                    getHtml(cache.linkUrl.goGameIndex, 'mainContent');
                 });
             }
         };
