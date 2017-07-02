@@ -27,6 +27,7 @@
 <div class="new panel">
     <ol class="breadcrumb">
         <li><a data-link="/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
+        <li><a data-link="/goodybag/index.htm?currentPage=1&gameid={{gameId}}" href="javascript:void(0)">GoodyBag</a></li>
         <li class="active">New</li>
     </ol>
     <div class="new-control">
@@ -34,21 +35,22 @@
     </div>
     <div class="new-data">
         <form id="form" action="/">
+            <input id="gameid" name="gameid" type="hidden" value="{{gameId}}">
             <input class="form-control" type="text" name="name" placeholder="name">
             <textarea class="form-control" placeholder="description" name="desc" rows="4"></textarea>
-            <input id="upload" style="display: none" type="file" name="background">
-            <button id="uploadProxyBtn" class="btn btn-info">upload background pic</button>
-            <img id="showImage" class="upload-image" src="/images/bg/empty.jpg" alt="">
+            <input id="upload" style="display: none" type="file" name="redeemcode">
+            <button id="uploadProxyBtn" class="btn btn-info">upload redeem code</button>
+            <span id="uploadFileName" class=""></span>
         </form>
     </div>
 </div>
 <script>
     var newPageCache = {
         api: {
-            addNewGame: '/api/game'
+            addNewGoodyBag: '/api/goodybag'
         },
         linkUrl: {
-            goGameIndex: '/game/index.htm'
+            goGoodyBagIndex: '/goodybag/index.htm'
         }
     };
 
@@ -65,7 +67,7 @@
         },
         initEvent: function() {
             this.addClickUploadBtnEvent();
-            this.addShowUploadImageEvent();
+            this.addShowUploadRedeemCodeEvent();
             this.addSubmitBtnEvent();
         },
         initComponent: function() {
@@ -77,26 +79,23 @@
                 $('#upload').click();
             });
         },
-        addShowUploadImageEvent: function() {
+        addShowUploadRedeemCodeEvent: function() {
             $('#upload').change(function() {
                 var file = this.files[0];
-                if(!/image\/\w+/.test(file.type)){
-                    toastr.warn('上传的文件必须是图片！');
+                if (file.type !== 'text/plain') {
+                    toastr.warn('上传的文件必须是text文件！');
                     return false;
                 }
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function(e){
-                    var imgBase64Data = e.target.result;
-                    $('#showImage').css('width', 400).attr('src', imgBase64Data);
-                }
+
+                $('#uploadFileName').html(file.name);
             });
         },
         addSubmitBtnEvent: function() {
             $('#ok').click(function() {
-                submitForm('post', newPageCache.api.addNewGame, 'form', function() {
-                    toastr.success('add a new game successfully!');
-                    getHtml(newPageCache.linkUrl.goGameIndex, 'mainContent');
+                var gameId = $('#gameid').val();
+                submitForm('post', newPageCache.api.addNewGoodyBag, 'form', function() {
+                    toastr.success('add a new goody bag successfully!');
+                    getHtml(newPageCache.linkUrl.goGoodyBagIndex + '?gameid=' + gameId , 'mainContent');
                 });
             });
         }

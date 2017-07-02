@@ -31,28 +31,26 @@
     </div>
 </div>
 <script>
-    (function() {
-        var detailPage = {
-            init: function() {
-                this.initComponent();
-            },
-            initComponent: function() {
-                breadcrumbCpn.init();
-            }
-        };
+    var detailPage = {
+        init: function() {
+            this.initComponent();
+        },
+        initComponent: function() {
+            breadcrumbCpn.init();
+        }
+    };
 
-        var breadcrumbCpn = {
-            init: function() {
-                this.initEvent();
-            },
-            initEvent: function() {
-                $('#mainContent').on('click', '.breadcrumb', function(event) {
-                    var linkUrl = $(event.target).attr('data-link');
-                    getHtml(linkUrl, 'mainContent');
-                });
-            }
-        };
+    var breadcrumbCpn = {
+        init: function() {
+            this.initEvent();
+        },
+        initEvent: function() {
+            $('#mainContent').off('click', '.breadcrumb').on('click', '.breadcrumb', function(event) {
+                var linkUrl = $(event.target).attr('data-link');
+                getHtml(linkUrl, 'mainContent');
+            });
+        }
+    };
 
-        detailPage.init();
-    }());
+    detailPage.init();
 </script>

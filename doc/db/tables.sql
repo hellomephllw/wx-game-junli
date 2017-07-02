@@ -38,9 +38,15 @@ create table GoodyBag(
     id int primary key not null auto_increment,
     name varchar(30) not null,
     description varchar(200) not null,
-    code varchar(50) not null,
+    gameid int not null
+);
+
+-- 兑换码
+drop table if exists RedeemKey;
+create table RedeemKey(
+    id int primary key not null auto_increment,
+    code varchar(100) not null,
     isLocked int not null,   -- 1:已锁定, 0:未锁定
     isObtained int not null, -- 1:已被获取，0:未被获取
-    gameid int not null,
-    constraint fk_gameid foreign key(gameid) references Game(id)
+    goodybagid int not null
 );

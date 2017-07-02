@@ -46,85 +46,83 @@
     </div>
 </div>
 <script>
-    (function() {
-        var cache = {
-            api: {
-                modifyGame: '/api/game'
-            },
-            linkUrl: {
-                goGameIndex: '/game/index.htm'
-            }
-        };
+    var modifyPageCache = {
+        api: {
+            modifyGame: '/api/game'
+        },
+        linkUrl: {
+            goGameIndex: '/game/index.htm'
+        }
+    };
 
-        var modifyPage = {
-            init: function() {
-                this.initData();
-                this.initPage();
-                this.initEvent();
-                this.initComponent();
-            },
-            initData: function() {
+    var modifyPage = {
+        init: function() {
+            this.initData();
+            this.initPage();
+            this.initEvent();
+            this.initComponent();
+        },
+        initData: function() {
 
-            },
-            initPage: function() {
+        },
+        initPage: function() {
 
-            },
-            initEvent: function() {
-                this.addClickUploadBtnEvent();
-                this.addShowUploadImageEvent();
-                this.addClickOkBtnEvent();
-                this.addClickCancelBtnEvent();
-            },
-            initComponent: function() {
-                breadcrumbCpn.init();
-            },
-            addClickUploadBtnEvent: function() {
-                $('#uploadProxyBtn').click(function(event) {
-                    event.preventDefault();
-                    $('#upload').click();
+        },
+        initEvent: function() {
+            this.addClickUploadBtnEvent();
+            this.addShowUploadImageEvent();
+            this.addClickOkBtnEvent();
+            this.addClickCancelBtnEvent();
+        },
+        initComponent: function() {
+            breadcrumbCpn.init();
+        },
+        addClickUploadBtnEvent: function() {
+            $('#uploadProxyBtn').click(function(event) {
+                event.preventDefault();
+                $('#upload').click();
+            });
+        },
+        addShowUploadImageEvent: function() {
+            $('#upload').change(function() {
+                var file = this.files[0];
+                if(!/image\/\w+/.test(file.type)){
+                    toastr.warn('上传的文件必须是图片！');
+                    return false;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(e){
+                    var imgBase64Data = e.target.result;
+                    $('#showImage').css('width', 400).attr('src', imgBase64Data);
+                }
+            });
+        },
+        addClickOkBtnEvent: function() {
+            $('#ok').click(function() {
+                submitForm('patch', modifyPageCache.api.modifyGame, 'form', function() {
+                    getHtml(modifyPageCache.linkUrl.goGameIndex, 'mainContent');
                 });
-            },
-            addShowUploadImageEvent: function() {
-                $('#upload').change(function() {
-                    var file = this.files[0];
-                    if(!/image\/\w+/.test(file.type)){
-                        toastr.warn('上传的文件必须是图片！');
-                        return false;
-                    }
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function(e){
-                        var imgBase64Data = e.target.result;
-                        $('#showImage').css('width', 400).attr('src', imgBase64Data);
-                    }
-                });
-            },
-            addClickOkBtnEvent: function() {
-                $('#ok').click(function() {
-                    submitForm('patch', cache.api.modifyGame, 'form', function() {
-                        getHtml(cache.linkUrl.goGameIndex, 'mainContent');
-                    });
-                });
-            },
-            addClickCancelBtnEvent: function() {
-                $('#cancel').click(function() {
-                    getHtml(cache.linkUrl.goGameIndex, 'mainContent');
-                });
-            }
-        };
+            });
+        },
+        addClickCancelBtnEvent: function() {
+            $('#cancel').click(function() {
+                getHtml(modifyPageCache.linkUrl.goGameIndex, 'mainContent');
+            });
+        }
+    };
 
-        var breadcrumbCpn = {
-            init: function() {
-                this.initEvent();
-            },
-            initEvent: function() {
-                $('#mainContent').on('click', '.breadcrumb', function(event) {
-                    var linkUrl = $(event.target).attr('data-link');
-                    getHtml(linkUrl, 'mainContent');
-                });
-            }
-        };
+    var breadcrumbCpn = {
+        init: function() {
+            this.initEvent();
+        },
+        initEvent: function() {
+            $('#mainContent').off('click', '.breadcrumb').on('click', '.breadcrumb', function(event) {
+                var linkUrl = $(event.target).attr('data-link');
+                getHtml(linkUrl, 'mainContent');
+            });
+        }
+    };
 
-        modifyPage.init();
-    }());
+    modifyPage.init();
 </script>

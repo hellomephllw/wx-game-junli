@@ -16,12 +16,14 @@
 </style>
 <div class="goodybag panel">
     <ol class="breadcrumb">
+        <li><a data-link="/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
         <li class="active">GoodyBag</li>
     </ol>
     <div class="goodybag-control">
         <button id="new" class="btn btn-primary">New</button>
     </div>
     <div class="goodybag-data">
+        <input id="gameId" type="hidden" value="{{gameId}}">
         <div id="panelBody" class="panel-body">
             {{#if rows.length}}
                 <table class="table table-striped">
@@ -43,7 +45,6 @@
                                 <a class="panel-operate-detail" data-id="{{this.id}}" href="javascript:void(0)">Detail</a>
                                 <a class="panel-operate-modify" data-id="{{this.id}}" href="javascript:void(0)">Modify</a>
                                 <a class="panel-operate-remove" data-id="{{this.id}}" href="javascript:void(0)">Remove</a>
-                                <a class="panel-operate-goodybag" data-id="{{this.id}}" href="javascript:void(0)">GoodyBag</a>
                             </td>
                         </tr>
                     {{/each}}
@@ -61,75 +62,76 @@
     </div>
 </div>
 <script>
-    (function() {
-        var cache = {
-            api: {
-                deleteGoodyBag: '/api/goodybag'
-            },
-            linkUrl: {
-                goGame: '/game/index.htm',
-                goGameNew: '/game/new.htm',
-                goGameDetail: '/game/detail.htm',
-                goGameModify: '/game/modify.htm',
-                goGoodyBag: '/goodybag/index.htm'
-            }
-        };
+    var goodyBagPageCache = {
+        api: {
+            deleteGoodyBag: '/api/goodybag'
+        },
+        linkUrl: {
+            goGame: '/game/index.htm',
+            goGoodyBagNew: '/goodybag/new.htm',
+            goGoodyBagDetail: '/goodybag/detail.htm',
+            goGoodyBagModify: '/goodybag/modify.htm',
+            goGoodyBag: '/goodybag/index.htm'
+        }
+    };
 
-        var goodyBagPage = {
-            init: function() {
-                this.initData();
-                this.initPage();
-                this.initEvent();
-                this.initComponent();
-            },
-            initData: function() {
+    var goodyBagPage = {
+        init: function() {
+            this.initData();
+            this.initPage();
+            this.initEvent();
+            this.initComponent();
+        },
+        initData: function() {
+        },
+        initPage: function() {
+        },
+        initEvent: function() {
+            this.addClickNewBtnEvent();
+        },
+        initComponent: function() {
+            paginatorCpn.init({
+                currentPage: $('#currentPage').val(),
+                totalPages: $('#totalPages').val(),
+                numberOfPages: $('#numberOfPages').val(),
+                size:'normal',
+                alignment:'right',
+                wrapperId: 'paging',
+                onPageClicked: function(event, originalEvent, type, page) {
+                    getHtml(goodyBagPageCache.linkUrl.goGame + '?currentPage=' + page + '&gameid=' + $('#gameId').val(), 'mainContent');
+                }
+            });
+        },
+        addClickNewBtnEvent: function() {
+            $('#new').click(function() {
+                getHtml(goodyBagPageCache.linkUrl.goGoodyBagNew + '?gameid=' + $('#gameId').val(), 'mainContent');
+            });
+        }
+    };
 
-            },
-            initPage: function() {
+    var paginatorCpn = {
+        cache: null,
+        init: function(option) {
+            this.initData(option);
+            this.initPage();
+            this.initEvent();
+        },
+        initData: function(option) {
+            this.storeCache(option);
+        },
+        initPage: function() {
+            this.renderPaginator();
+        },
+        initEvent: function() {
 
-            },
-            initEvent: function() {
+        },
+        storeCache: function(option) {
+            this.cache = option;
+        },
+        renderPaginator: function() {
+            $('#' + this.cache.wrapperId).bootstrapPaginator(this.cache);
+        }
+    };
 
-            },
-            initComponent: function() {
-                paginatorCpn.init({
-                    currentPage: $('#currentPage').val(),
-                    totalPages: $('#totalPages').val(),
-                    numberOfPages: $('#numberOfPages').val(),
-                    size:'normal',
-                    alignment:'right',
-                    wrapperId: 'paging',
-                    onPageClicked: function(event, originalEvent, type, page) {
-                        getHtml(cache.linkUrl.goGame + '?currentPage=' + page, 'mainContent');
-                    }
-                });
-            }
-        };
-
-        var paginatorCpn = {
-            cache: null,
-            init: function(option) {
-                this.initData(option);
-                this.initPage();
-                this.initEvent();
-            },
-            initData: function(option) {
-                this.storeCache(option);
-            },
-            initPage: function() {
-                this.renderPaginator();
-            },
-            initEvent: function() {
-
-            },
-            storeCache: function(option) {
-                this.cache = option;
-            },
-            renderPaginator: function() {
-                $('#' + this.cache.wrapperId).bootstrapPaginator(this.cache);
-            }
-        };
-
-        goodyBagPage.init();
-    }());
+    goodyBagPage.init();
 </script>
