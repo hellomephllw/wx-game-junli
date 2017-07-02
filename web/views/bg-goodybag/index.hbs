@@ -133,7 +133,7 @@
         addClickDetailBtnEvent: function() {
             $('#panelBody').off('click', '.panel-operate-detail').on('click', '.panel-operate-detail', function() {
                 var id = $(this).attr('data-id');
-                getHtml(goodyBagPageCache.linkUrl.goGoodyBagDetail + '?goodybagid=' + id, 'mainContent');
+                getHtml(goodyBagPageCache.linkUrl.goGoodyBagDetail + '?goodybagid=' + id + '&gameid=' + $('#gameId').val(), 'mainContent');
             });
         },
         addClickModifyBtnEvent: function() {
