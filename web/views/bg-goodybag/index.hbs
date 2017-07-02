@@ -90,6 +90,7 @@
             this.addClickNewBtnEvent();
             this.addClickRemoveBtnEvent();
             this.addClickDetailBtnEvent();
+            this.addClickModifyBtnEvent();
         },
         initComponent: function() {
             paginatorCpn.init({
@@ -100,7 +101,7 @@
                 alignment:'right',
                 wrapperId: 'paging',
                 onPageClicked: function(event, originalEvent, type, page) {
-                    getHtml(goodyBagPageCache.linkUrl.goGame + '?currentPage=' + page + '&gameid=' + $('#gameId').val(), 'mainContent');
+                    getHtml(goodyBagPageCache.linkUrl.goGoodyBag + '?currentPage=' + page + '&gameid=' + $('#gameId').val(), 'mainContent');
                 }
             });
         },
@@ -139,7 +140,7 @@
         addClickModifyBtnEvent: function() {
             $('#panelBody').off('click', '.panel-operate-modify').on('click', '.panel-operate-modify', function() {
                 var id = $(this).attr('data-id');
-                getHtml(indexPageCache.linkUrl.goGoodyBagModify + '?goodybagid=' + id, 'mainContent');
+                getHtml(goodyBagPageCache.linkUrl.goGoodyBagModify + '?goodybagid=' + id + '&gameid=' + $('#gameId').val(), 'mainContent');
             });
         }
     };

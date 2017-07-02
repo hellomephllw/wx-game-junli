@@ -1,14 +1,15 @@
+<!--<link rel="stylesheet" href="/css/bg-game/modify.css">-->
 <style>
-    .new {
+    .modify {
         padding-bottom: 30px;
     }
 
-    .new-control {
+    .modify-control {
         padding-left: 25px;
         margin-bottom: 25px;
     }
 
-    .new-data {
+    .modify-data {
         width: 400px;
         padding: 0 25px;
         margin-top: 10px;
@@ -17,38 +18,46 @@
     .form-control {
         margin: 10px 0;
     }
+
+    .upload-image {
+        width: 200px;
+        height: auto;
+        margin-top: 25px;
+    }
 </style>
-<div class="new panel">
+<div class="modify panel">
     <ol class="breadcrumb">
         <li><a data-link="/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
         <li><a data-link="/goodybag/index.htm?currentPage=1&gameid={{gameId}}" href="javascript:void(0)">GoodyBag</a></li>
-        <li class="active">New</li>
+        <li class="active">Modify</li>
     </ol>
-    <div class="new-control">
+    <div class="modify-control">
         <button id="ok" class="btn btn-primary">OK</button>
+        <button id="cancel" class="btn btn-primary">Cancel</button>
     </div>
-    <div class="new-data">
+    <div class="modify-data">
         <form id="form" action="/">
-            <input id="gameid" name="gameid" type="hidden" value="{{gameId}}">
-            <input class="form-control" type="text" name="name" placeholder="name">
-            <textarea class="form-control" placeholder="description" name="desc" rows="4"></textarea>
+            <input id="gameId" name="gameid" type="hidden" value="{{gameId}}">
+            <input id="goodyBagId" name="goodybagid" type="hidden" value="{{id}}">
+            <input id="name" class="form-control" type="text" name="name" placeholder="name" value="{{name}}">
+            <textarea id="description" class="form-control" placeholder="description" name="desc" rows="4">{{description}}</textarea>
             <input id="upload" style="display: none" type="file" name="redeemkey">
-            <button id="uploadProxyBtn" class="btn btn-info">upload redeem key</button>
+            <button id="uploadProxyBtn" class="btn btn-info">upload redeem key additionally</button>
             <span id="uploadFileName" class=""></span>
         </form>
     </div>
 </div>
 <script>
-    var newPageCache = {
+    var modifyPageCache = {
         api: {
-            addNewGoodyBag: '/api/goodybag'
+            modifyGame: '/api/goodybag'
         },
         linkUrl: {
             goGoodyBagIndex: '/goodybag/index.htm'
         }
     };
 
-    var newPage = {
+    var modifyPage = {
         init: function() {
             this.initData();
             this.initPage();
@@ -56,13 +65,16 @@
             this.initComponent();
         },
         initData: function() {
+
         },
         initPage: function() {
+
         },
         initEvent: function() {
             this.addClickUploadBtnEvent();
-            this.addShowUploadRedeemCodeEvent();
-            this.addSubmitBtnEvent();
+            this.addShowUploadImageEvent();
+            this.addClickOkBtnEvent();
+            this.addClickCancelBtnEvent();
         },
         initComponent: function() {
             breadcrumbCpn.init();
@@ -73,7 +85,7 @@
                 $('#upload').click();
             });
         },
-        addShowUploadRedeemCodeEvent: function() {
+        addShowUploadImageEvent: function() {
             $('#upload').change(function() {
                 var file = this.files[0];
                 if (file.type !== 'text/plain') {
@@ -84,13 +96,16 @@
                 $('#uploadFileName').html(file.name);
             });
         },
-        addSubmitBtnEvent: function() {
+        addClickOkBtnEvent: function() {
             $('#ok').click(function() {
-                var gameId = $('#gameid').val();
-                submitForm('post', newPageCache.api.addNewGoodyBag, 'form', function() {
-                    toastr.success('add a new goody bag successfully!');
-                    getHtml(newPageCache.linkUrl.goGoodyBagIndex + '?gameid=' + gameId , 'mainContent');
+                submitForm('patch', modifyPageCache.api.modifyGame, 'form', function() {
+                    getHtml(modifyPageCache.linkUrl.goGoodyBagIndex + '?gameid=' + $('#gameId').val(), 'mainContent');
                 });
+            });
+        },
+        addClickCancelBtnEvent: function() {
+            $('#cancel').click(function() {
+                getHtml(modifyPageCache.linkUrl.goGoodyBagIndex + '?gameid=' + $('#gameId').val(), 'mainContent');
             });
         }
     };
@@ -107,5 +122,5 @@
         }
     };
 
-    newPage.init();
+    modifyPage.init();
 </script>
