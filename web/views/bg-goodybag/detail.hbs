@@ -13,20 +13,16 @@
         margin-top: 10px;
     }
 
-    .detail-image {
-        max-width: 400px;
-        height: auto;
-    }
 </style>
 <div class="detail panel">
     <ol class="breadcrumb">
         <li><a data-link="/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
+        <li><a data-link="/goodybag/index.htm?currentPage=1&gameid={{gameId}}" href="javascript:void(0)">GoodyBag</a></li>
         <li class="active">Detail</li>
     </ol>
     <div class="detail-data">
         <input class="form-control detail-data" type="text" name="name" value="{{name}}" disabled>
         <textarea class="form-control detail-data" name="desc" rows="4" disabled>{{description}}</textarea>
-        <img class="detail-image" src="{{imgPath}}" alt="">
     </div>
 </div>
 <script>

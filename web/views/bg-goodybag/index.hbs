@@ -89,6 +89,7 @@
         initEvent: function() {
             this.addClickNewBtnEvent();
             this.addClickRemoveBtnEvent();
+            this.addClickDetailBtnEvent();
         },
         initComponent: function() {
             paginatorCpn.init({
@@ -127,6 +128,18 @@
                         }
                     });
                 }
+            });
+        },
+        addClickDetailBtnEvent: function() {
+            $('#panelBody').off('click', '.panel-operate-detail').on('click', '.panel-operate-detail', function() {
+                var id = $(this).attr('data-id');
+                getHtml(goodyBagPageCache.linkUrl.goGoodyBagDetail + '?goodybagid=' + id, 'mainContent');
+            });
+        },
+        addClickModifyBtnEvent: function() {
+            $('#panelBody').off('click', '.panel-operate-modify').on('click', '.panel-operate-modify', function() {
+                var id = $(this).attr('data-id');
+                getHtml(indexPageCache.linkUrl.goGoodyBagModify + '?goodybagid=' + id, 'mainContent');
             });
         }
     };
