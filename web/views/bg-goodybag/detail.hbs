@@ -23,14 +23,41 @@
     <div class="detail-data">
         <input class="form-control detail-data" type="text" name="name" value="{{name}}" disabled>
         <textarea class="form-control detail-data" name="desc" rows="4" disabled>{{description}}</textarea>
-        <p>兑换码总数：10个</p>
-        <p>已领取：5个</p>
+        <p>兑换码总数：<span id="total"></span>个</p>
+        <p>已领取：<span id="obtained"></span>个</p>
     </div>
 </div>
 <script>
+    var detailPageCache = {
+        api: {
+            getCount: '/api/goodybag/{{goodyBagId}}/count'
+        },
+        total: 0,
+        obtained: 0
+    };
+
     var detailPage = {
         init: function() {
-            this.initComponent();
+            var _this = this;
+            this.initData(function() {
+                _this.initPage();
+                _this.initComponent();
+            });
+        },
+        initData: function(callback) {
+            getJson({
+                type: 'get',
+                url: detailPageCache.api.getCount,
+                done: function(data) {
+                    detailPageCache.total = data.total;
+                    detailPageCache.obtained = data.obtained;
+                    callback();
+                }
+            });
+        },
+        initPage: function() {
+            $('#total').text(detailPageCache.total);
+            $('#obtained').text(detailPageCache.obtained);
         },
         initComponent: function() {
             breadcrumbCpn.init();
