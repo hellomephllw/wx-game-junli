@@ -88,6 +88,7 @@
         },
         initEvent: function() {
             this.addClickNewBtnEvent();
+            this.addClickRemoveBtnEvent();
         },
         initComponent: function() {
             paginatorCpn.init({
@@ -105,6 +106,27 @@
         addClickNewBtnEvent: function() {
             $('#new').click(function() {
                 getHtml(goodyBagPageCache.linkUrl.goGoodyBagNew + '?gameid=' + $('#gameId').val(), 'mainContent');
+            });
+        },
+        addClickRemoveBtnEvent: function() {
+            $('#panelBody').off('click', '.panel-operate-remove').on('click', '.panel-operate-remove', function() {
+                var bool = confirm('确定要删除？');
+                var id = $(this).attr('data-id');
+
+                if (bool) {
+                    getJson({
+                        type: 'delete',
+                        url: goodyBagPageCache.api.deleteGoodyBag + '/' + id,
+                        done: function(data) {
+                            if (data.success) {
+                                toastr.success('删除成功！');
+                                getHtml(indexPageCache.linkUrl.goGoodyBag + '?gameid=' + $('#gameId').val(), 'mainContent');
+                            } else {
+                                toastr.error('删除失败！');
+                            }
+                        }
+                    });
+                }
             });
         }
     };
