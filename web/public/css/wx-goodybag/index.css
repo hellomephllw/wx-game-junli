@@ -148,6 +148,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
 
 .redeemkey {
     width: 100%;
+    margin-top: 40px;
     color: #ed8100;
 }
 
@@ -163,6 +164,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
 }
 
 .redeemkey-words {
+    margin-top: 5px;
     font-size: 16px;
     text-align: center;
 }
