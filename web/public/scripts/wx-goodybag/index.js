@@ -4,7 +4,9 @@
 (function() {
     var wxIndexPage = {
         init: function() {
-
+            this.initData();
+            this.initPage();
+            this.initEvent();
         },
         initData: function() {
 
