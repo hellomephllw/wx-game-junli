@@ -12,6 +12,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
 }
 
 .whole-wrap {
+    box-sizing: border-box;
     position: relative;
     width: 100%;
     padding: 30px 0 10px;
