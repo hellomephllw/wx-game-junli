@@ -1,4 +1,4 @@
-create database if not exists mysql_demo character set utf8;
+create database if not exists coolguy character set utf8;
 
 -- 设置事务隔离级别为提交读
 set global transaction isolation level read committed;
@@ -21,7 +21,7 @@ create table Admin(
 	authority int not null,
 	comment varchar(200)
 );
-insert into admin values(null, 'admin', 'ljl123456', 0, 'super manager');
+insert into Admin values(null, 'admin', 'ljl123456', 0, 'super manager');
 
 -- 游戏
 drop table if exists Game;
