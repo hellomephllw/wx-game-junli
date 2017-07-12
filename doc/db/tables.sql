@@ -29,7 +29,8 @@ create table Game(
     id int primary key not null auto_increment,
     name varchar(30) not null,
     imgPath varchar(100) not null,
-    description varchar(50) not null
+    description varchar(50) not null,
+    rankNo int default 999
 );
 
 -- 礼包

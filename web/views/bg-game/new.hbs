@@ -19,7 +19,7 @@
     }
 
     .upload-image {
-        width: 200px;
+        max-width: 200px;
         height: auto;
         margin-top: 25px;
     }
@@ -37,6 +37,12 @@
             <input class="form-control" type="text" name="name" placeholder="name">
             <textarea class="form-control" placeholder="description" name="desc" rows="4"></textarea>
             <input id="upload" style="display: none" type="file" name="background">
+            <select name="rank" id="" class="form-control input-sm">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option selected value="999">999</option>
+            </select>
             <button id="uploadProxyBtn" class="btn btn-info">upload background pic</button>
             <img id="showImage" class="upload-image" src="/images/bg/empty.jpg" alt="">
         </form>

@@ -39,6 +39,24 @@
             <input id="id" name="id" type="hidden" value="{{id}}">
             <input id="name" class="form-control" type="text" name="name" placeholder="name" value="{{name}}">
             <textarea id="description" class="form-control" placeholder="description" name="desc" rows="4">{{description}}</textarea>
+            <select name="rank" id="rank" class="form-control input-sm">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="999">999</option>
+            </select>
+            <input id="rankNo" type="hidden" value="{{rankNo}}">
+            <script>
+                var rankNovVal = document.getElementById('rankNo').value;
+                var rankEle = document.getElementById('rank');
+                var optionEles = rankEle.childNodes;
+                for (var i = 0, len = optionEles.length; i < len; ++i) {
+                    var optionEle = optionEles[i];
+                    if (optionEle.value == rankNovVal) {
+                        optionEle.setAttribute('selected', 'selected');
+                    }
+                }
+            </script>
             <input id="upload" style="display: none" type="file" name="background">
             <button id="uploadProxyBtn" class="btn btn-info">upload background pic</button>
             <img id="showImage" class="upload-image" src="{{imgPath}}" alt="">
@@ -63,10 +81,8 @@
             this.initComponent();
         },
         initData: function() {
-
         },
         initPage: function() {
-
         },
         initEvent: function() {
             this.addClickUploadBtnEvent();
