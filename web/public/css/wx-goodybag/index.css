@@ -29,6 +29,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
     background: url('/images/wx/kzbg1.png') no-repeat;
     background-size: 100%;
     border-radius: 10px;
+    transition: transform .5s;
 }
 
 .game-banner {
@@ -80,6 +81,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
     color: #00bcd3;
     background: url('/images/wx/tcbg1.png') no-repeat;
     background-size: 100%;
+    transition: opacity .3s;
 }
 
 .goodybag-title {
@@ -113,7 +115,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
 
 .goodybag-remaincount {
     width: 3rem;
-    margin: 0 auto;
+    margin: 0 auto .05rem;
     text-align: right;
 }
 
@@ -127,8 +129,8 @@ a, button, div, em, i, input, li, p, section, span, ul {
 }
 
 .goodybag-bar {
-    width: 100%;
     height: 100%;
+    transition: width 1s;
 }
 
 .goodybag-btn {
@@ -140,8 +142,10 @@ a, button, div, em, i, input, li, p, section, span, ul {
 }
 
 .redeemkey {
+    position: absolute;
+    top: 20%;
     width: 100%;
-    margin-top: 40px;
+    margin-top: .4rem;
     color: #ed8100;
 }
 
@@ -157,7 +161,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
 }
 
 .redeemkey-words {
-    margin-top: 5px;
+    margin-top: .1rem;
     font-size: 16px;
     text-align: center;
 }
