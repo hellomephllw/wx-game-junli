@@ -38,7 +38,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
     bottom: .17rem;
     width: 3.38rem;
     height: .31rem;
-    margin: 0 .05rem .04rem;
+    margin: 0 .05rem .0452rem;
     line-height: .31rem;
     text-align: center;
     font-size: 12px;
@@ -56,7 +56,7 @@ a, button, div, em, i, input, li, p, section, span, ul {
     bottom: .17rem;
     width: 3.38rem;
     height: .97rem;
-    margin: .04rem .05rem;
+    margin: .0452rem .05rem;
     border-radius: 10px;
 }
 
