@@ -134,6 +134,7 @@
                                     var finalNum = processObtained / processTotal * 100;
                                     var currNum = 0;
                                     var interval = setInterval(function() {
+                                        if (finalNum === 0) return clearInterval(interval);
                                         $processWords.html(++currNum);
                                         if (currNum === finalNum) clearInterval(interval);
                                     }, 30);
