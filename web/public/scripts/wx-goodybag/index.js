@@ -8,9 +8,13 @@
             getGoodyBag: '/api/goodybag',
             getRedeemKeyCount: function(goodyBagId) {
                 return '/api/goodybag/' + goodyBagId + '/count';
+            },
+            getRedeemKey: function(goodyBagId) {
+                return '/api/goodybag/' + goodyBagId + '/redeemkey/one';
             }
         },
-        games: []
+        games: [],
+        chosenGoodyBagId: ''
     };
 
     var wxIndexPage = {
@@ -56,7 +60,7 @@
         },
         getRedeemKey: function() {
             return '<div class="redeemkey">' +
-                        '<div class="redeemkey-code">REFDABHTFAFDSAFSE</div>' +
+                        '<div id="redeemKey" class="redeemkey-code"></div>' +
                         '<p class="redeemkey-words">长按复制</p>' +
                     '</div>';
         },
@@ -102,6 +106,7 @@
                 var $goodyBagAlert = $('#goodyBagAlert');
                 $('#alertContent').html(_this.getGoodyBag());
 
+                //获取礼包信息
                 getJson({
                     type: 'get',
                     url: cache.api.getGoodyBag + '/' + gameId,
@@ -110,6 +115,9 @@
                         var goodyBagId = data.result.id;
                         var goodyBagName = data.result.name;
                         var goodyBagDesc = data.result.description;
+
+                        cache.chosenGoodyBagId = goodyBagId;
+
                         getJson({
                             type: 'get',
                             url: cache.api.getRedeemKeyCount(goodyBagId),
@@ -131,7 +139,7 @@
                                     $('#processBar').css('width', (processObtained / processTotal) * processBarWidth);
                                     //初始化进度数字
                                     var $processWords = $('#processWords');
-                                    var finalNum = processObtained / processTotal * 100;
+                                    var finalNum = Math.round(processObtained / processTotal * 100);
                                     var currNum = 0;
                                     var interval = setInterval(function() {
                                         if (finalNum === 0) return clearInterval(interval);
@@ -163,6 +171,18 @@
             var _this = this;
             $('#wholeWrap').on('click', '#obtainRedeemKeyBtn', function() {
                 $('#alertContent').html(_this.getRedeemKey());
+                getJson({
+                    type: 'get',
+                    url: cache.api.getRedeemKey(cache.chosenGoodyBagId),
+                    success: function(data) {
+                        if (data.success) {
+                            $('#redeemKey').html(data.code);
+                        } else {
+                            showSmallTips('sorry，兑换码已经被领取完啦！');
+                        }
+                        $('#commonLoading').hide();
+                    }
+                });
             });
         }
     };
