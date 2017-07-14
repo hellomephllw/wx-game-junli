@@ -4,7 +4,7 @@
 (function() {
     var cache = {
         api: {
-            login: '/api/admin/login'
+            login: '/coolguy/api/admin/login'
         }
     };
 
@@ -39,7 +39,7 @@
                         $('#commonLoading').hide();
                         if (data.success) {
                             showSmallTips('登录成功！');
-                            location.href = '/admin/index.htm';
+                            location.href = '/coolguy/admin/index.htm';
                         } else {
                             showSmallTips('账号或密码错误！');
                         }

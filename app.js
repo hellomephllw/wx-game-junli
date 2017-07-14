@@ -30,11 +30,11 @@ app.use(bodyParser.json());
 
 /**添加路由*/
 //api
-app.use('/api', require('./lib/api/admin'));
-app.use('/api', require('./lib/api/game'));
-app.use('/api', require('./lib/api/goodyBag'));
+app.use('/coolguy/api', require('./lib/api/admin'));
+app.use('/coolguy/api', require('./lib/api/game'));
+app.use('/coolguy/api', require('./lib/api/goodyBag'));
 
 //视图
-app.use('/', require('./lib/routes/adminRouter'));
-app.use('/', require('./lib/routes/gameRouter'));
-app.use('/', require('./lib/routes/goodyBagRouter'));
+app.use('/coolguy', require('./lib/routes/adminRouter'));
+app.use('/coolguy', require('./lib/routes/gameRouter'));
+app.use('/coolguy', require('./lib/routes/goodyBagRouter'));

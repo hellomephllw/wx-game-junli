@@ -16,8 +16,8 @@
 </style>
 <div class="detail panel">
     <ol class="breadcrumb">
-        <li><a data-link="/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
-        <li><a data-link="/goodybag/index.htm?currentPage=1&gameid={{gameId}}" href="javascript:void(0)">GoodyBag</a></li>
+        <li><a data-link="/coolguy/game/index.htm?currentPage=1" href="javascript:void(0)">Game</a></li>
+        <li><a data-link="/coolguy/goodybag/index.htm?currentPage=1&gameid={{gameId}}" href="javascript:void(0)">GoodyBag</a></li>
         <li class="active">Detail</li>
     </ol>
     <div class="detail-data">
@@ -30,7 +30,7 @@
 <script>
     var detailPageCache = {
         api: {
-            getCount: '/api/goodybag/{{goodyBagId}}/count'
+            getCount: '/coolguy/api/goodybag/{{goodyBagId}}/count'
         },
         total: 0,
         obtained: 0

@@ -4,8 +4,8 @@
 (function() {
     var cache = {
         viewUrl: {
-            homepage: '/admin/homepage.htm',
-            game: '/game/index.htm'
+            homepage: '/coolguy/admin/homepage.htm',
+            game: '/coolguy/game/index.htm'
         }
     };
 

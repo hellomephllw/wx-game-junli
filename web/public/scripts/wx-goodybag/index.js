@@ -4,13 +4,13 @@
 (function() {
     var cache = {
         api: {
-            getGames: '/api/game',
-            getGoodyBag: '/api/goodybag',
+            getGames: '/coolguy/api/game',
+            getGoodyBag: '/coolguy/api/goodybag',
             getRedeemKeyCount: function(goodyBagId) {
-                return '/api/goodybag/' + goodyBagId + '/count';
+                return '/coolguy/api/goodybag/' + goodyBagId + '/count';
             },
             getRedeemKey: function(goodyBagId) {
-                return '/api/goodybag/' + goodyBagId + '/redeemkey/one';
+                return '/coolguy/api/goodybag/' + goodyBagId + '/redeemkey/one';
             }
         },
         games: [],
