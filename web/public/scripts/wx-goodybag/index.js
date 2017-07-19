@@ -53,7 +53,7 @@
                     '<div class="goodybag-process">' +
                         '<p class="goodybag-remaincount">礼包剩余<span id="processWords">0</span>%</p>' +
                         '<div class="goodybag-barwrap">' +
-                            '<img id="processBar" class="goodybag-bar" style="width: 0;" src="/images/wx/liaobaosytiao2.png"/>' +
+                            '<img id="processBar" class="goodybag-bar" style="width: 0;" src="/coolguy/images/wx/liaobaosytiao2.png"/>' +
                         '</div>' +
                     '</div>' +
                     '<div id="obtainRedeemKeyBtn" class="goodybag-btn"></div>';
@@ -72,9 +72,9 @@
                     id: game.id,
                     x: i % 2 === 0 ? 380 : -380,
                     levelSrc: (function() {
-                        if (game.rankNo == 1) return '/images/wx/picn1.png';
-                        else if (game.rankNo == 2) return '/images/wx/picn1.png';
-                        else if (game.rankNo == 3) return '/images/wx/picn1.png';
+                        if (game.rankNo == 1) return '/coolguy/images/wx/picn1.png';
+                        else if (game.rankNo == 2) return '/coolguy/images/wx/picn1.png';
+                        else if (game.rankNo == 3) return '/coolguy/images/wx/picn1.png';
                         return '';
                     }()),
                     showLevel: (function() {
