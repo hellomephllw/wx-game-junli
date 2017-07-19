@@ -136,10 +136,10 @@
                                     $('#goodyBagDesc').html(goodyBagDesc);
                                     //初始化进度条
                                     var processBarWidth = $('#processBar').parent().width();
-                                    $('#processBar').css('width', (processObtained / processTotal) * processBarWidth);
+                                    $('#processBar').css('width', ((processTotal - processObtained) / processTotal) * processBarWidth);
                                     //初始化进度数字
                                     var $processWords = $('#processWords');
-                                    var finalNum = Math.round(processObtained / processTotal * 100);
+                                    var finalNum = Math.round((processTotal - processObtained) / processTotal * 100);
                                     var currNum = 0;
                                     var interval = setInterval(function() {
                                         if (finalNum === 0) return clearInterval(interval);
