@@ -21,7 +21,7 @@ create table Admin(
 	authority int not null,
 	comment varchar(200)
 );
-insert into Admin values(null, 'admin', 'ljl123456', 0, 'super manager');
+insert into Admin values(null, 'admin', 'ljl123', 0, 'super manager');
 
 -- 游戏
 drop table if exists Game;

@@ -16,7 +16,7 @@ var server = app.listen(3000, function () {
 });
 
 /**指定静态目录*/
-app.use(express.static('./web/public'));
+app.use('/coolguy', express.static('./web/public'));
 
 /**配置handlebar视图*/
 app.engine('.hbs', exphbs({extname: '.hbs'}));
